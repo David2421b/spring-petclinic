@@ -14,6 +14,7 @@ pipeline {
         TESTCONTAINERS_HOST_OVERRIDE = 'host.docker.internal'
       }
       steps {
+        sh 'apt-get update -qq && apt-get install -y --no-install-recommends docker.io docker-compose-v2'
         sh 'mvn clean install'
         stash name: 'petclinic-jar', includes: 'target/*.jar'
       }
